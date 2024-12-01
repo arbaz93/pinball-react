@@ -2,14 +2,17 @@
 // Author: Yousaf Arbaz
 // Get the canvas element  
 // document.addEventListener('DOMContentLoaded', startGame)
-setTimeout(startGame, 400)
+
+// Setting timeout so that everything properly loads
+export const gameLoadTime = 4000;
+setTimeout(startGame, gameLoadTime)
+
+// Function containing all game code
 function startGame() {
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
-    console.log('sssssss')
+
     // Set the canvas dimensions  
-    // canvas.width = 800;
-    // canvas.height = 600;
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
@@ -158,7 +161,7 @@ function startGame() {
             paddleX += paddleSpeed;
         }
     }
-
+    // Handle mousemove event  
     function mouseMove(event) {
         paddleX = event.offsetX - (paddleWidth / 2)
 
@@ -171,6 +174,7 @@ function startGame() {
             return
         }
     }
+    // Handle touchmove event  
     function touchDown(event) {
         const rect = event.target.getBoundingClientRect()
         const offsetX = (event.touches[0].clientX - window.pageXOffset - rect.left)
@@ -206,8 +210,10 @@ function startGame() {
         }
     })
 
+    // Show welcome screen
+    drawWelcomeScreen();
+    
     // Initialize the event listeners
-    drawWelcomeScreen()
     document.addEventListener('keydown', handleKeyPress);
     canvas.addEventListener('mousemove', mouseMove);
     canvas.addEventListener('touchmove', touchDown);
