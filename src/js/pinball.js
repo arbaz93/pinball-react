@@ -59,6 +59,19 @@ function startGame() {
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
         ctx.fillText('Score: ' + score, 10, 10);
+        
+        // Draw the high score
+        const highScore = localStorage.getItem('pin_high_score');
+        if(highScore) {
+            ctx.font = `${style.font_size_100} Arial`;
+            ctx.fillStyle = style.text_clr;
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            ctx.fillText('High Score: ' + highScore, 10, 40);
+        }
+        if(score > Number(highScore)) {
+            localStorage.setItem('pin_high_score', score)
+        }
 
         // Draw the lives  
         ctx.textAlign = 'right';
@@ -67,12 +80,18 @@ function startGame() {
     function drawWelcomeScreen() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw the score  
-        ctx.font = `${style.font_size_100} Arial`;
-        ctx.fillStyle = style.text_clr;
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'top';
-        ctx.fillText('Score: ' + score, 10, 10);
+        // Draw the high score
+        const highScore = localStorage.getItem('pin_high_score');
+        if(highScore) {
+            ctx.font = `${style.font_size_100} Arial`;
+            ctx.fillStyle = style.text_clr;
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            ctx.fillText('High Score: ' + highScore, 10, 10);
+        }
+        if(score > Number(highScore)) {
+            localStorage.setItem('pin_high_score', score)
+        }
 
         // Draw the lives  
         ctx.textAlign = 'right';
@@ -112,6 +131,8 @@ function startGame() {
 
         }
 
+
+        const highScore = localStorage.getItem('pin_high_score')
         // Check for win  
         if (score >= 100) {
             // Draw the Game Over  
@@ -120,7 +141,12 @@ function startGame() {
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
             ctx.fillText(`You Win!`, canvas.width / 2, canvas.height / 2);
-            ctx.fillText(`score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
+            
+            if(score >= Number(highScore)) {
+                ctx.fillText(`New High Score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
+            } else {
+                ctx.fillText(`score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
+            }
 
             clearInterval(interval)
             currentPlayActive = false
@@ -134,8 +160,12 @@ function startGame() {
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
             ctx.fillText(`Game Over!`, canvas.width / 2, canvas.height / 2);
-            ctx.fillText(`score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
-
+            console.log(score + " : " + highScore)
+            if(score >= Number(highScore)) {
+                ctx.fillText(`New High Score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
+            } else {
+                ctx.fillText(`score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
+            }
             clearInterval(interval)
             currentPlayActive = false
             score = 0;
