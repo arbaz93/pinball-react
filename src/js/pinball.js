@@ -101,7 +101,7 @@ function startGame() {
         ctx.font = `${style.font_size_200} Arial`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
-        ctx.fillText(`Press SpaceBar to Start Game!`, canvas.width / 2, canvas.height / 2);
+        ctx.fillText(`Press ${canvas.width < '600' ? 'Tap' : 'Space'} to Start Game!`, canvas.width / 2, canvas.height / 2);
     }
     // Update the game state  
     function update() {
