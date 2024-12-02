@@ -134,25 +134,25 @@ function startGame() {
 
         const highScore = localStorage.getItem('pin_high_score')
         // Check for win  
-        if (score >= 100) {
-            // Draw the Game Over  
-            ctx.font = `${style.font_size_200} Arial`;
-            ctx.fillStyle = style.text_clr;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'top';
-            ctx.fillText(`You Win!`, canvas.width / 2, canvas.height / 2);
+        // if (score >= 100) {
+        //     // Draw the Game Over  
+        //     ctx.font = `${style.font_size_200} Arial`;
+        //     ctx.fillStyle = style.text_clr;
+        //     ctx.textAlign = 'center';
+        //     ctx.textBaseline = 'top';
+        //     ctx.fillText(`You Win!`, canvas.width / 2, canvas.height / 2);
             
-            if(score >= Number(highScore)) {
-                ctx.fillText(`New High Score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
-            } else {
-                ctx.fillText(`score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
-            }
+        //     if(score >= Number(highScore)) {
+        //         ctx.fillText(`New High Score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
+        //     } else {
+        //         ctx.fillText(`score: ${score}`, canvas.width / 2, (canvas.height / 2) + 40);
+        //     }
 
-            clearInterval(interval)
-            currentPlayActive = false
-            score = 0;
-            lives = 3;
-        }
+        //     clearInterval(interval)
+        //     currentPlayActive = false
+        //     score = 0;
+        //     lives = 3;
+        // }
         if (lives <= 0) {
             // Draw the Game Over  
             ctx.font = `${style.font_size_200} Arial`;
