@@ -58,7 +58,7 @@ function startGame() {
         ctx.fillStyle = style.text_clr;
         ctx.textAlign = 'left';
         ctx.textBaseline = 'top';
-        ctx.fillText('Score: ' + score, 10, 10);
+        ctx.fillText('Score: ' + score, 10, 40);
         
         // Draw the high score
         const highScore = localStorage.getItem('pin_high_score');
@@ -67,7 +67,7 @@ function startGame() {
             ctx.fillStyle = style.text_clr;
             ctx.textAlign = 'left';
             ctx.textBaseline = 'top';
-            ctx.fillText('High Score: ' + highScore, 10, 40);
+            ctx.fillText('High Score: ' + highScore, 10, 10);
         }
         if(score > Number(highScore)) {
             localStorage.setItem('pin_high_score', score)
